@@ -52,22 +52,23 @@ export default function ServicesPage() {
         actions={<><Magnetic as="button" onClick={() => scrollToId('contact')} className="btn-primary on-dark">Book a Consultation</Magnetic><Magnetic as="button" onClick={() => scrollToId('packages')} className="btn-ghost on-dark text-white">View Packages</Magnetic></>}
       />
 
+      <div className="pn-frame">
       <section id="svc-list" className="relative py-[clamp(40px,6vh,76px)] text-graphite" aria-labelledby="svc-list-title">
         <div className="container-x">
-          <SectionHead id="svc-list-title" chip="What we do" lines={['Five services,', 'one accountable team.']} accent={['team.']} text="Construction, design and renovation — each delivered on the same fixed-cost, milestone-driven process." />
-          <div className="mt-16 space-y-8 lg:space-y-12">
+          <SectionHead id="svc-list-title" chip="What we do" lines={['Six services,', 'one accountable team.']} accent={['team.']} text="Construction, design and renovation — each delivered on the same fixed-cost, milestone-driven process." />
+          <div className="mt-14">
             {services.map((s, i) => {
               const flip = i % 2 === 1
               return (
-                <Reveal key={s.id} y={80}>
-                  <article id={s.id} className="card group grid overflow-hidden !rounded-[32px] p-3 lg:grid-cols-12 lg:!rounded-[40px]" aria-labelledby={`svc-${s.id}`}>
+                <Reveal key={s.id} y={60} className={`relative py-9 lg:py-12 ${i > 0 ? 'border-t border-white/10' : ''}`}>
+                  <article id={s.id} className="group grid items-center gap-8 lg:grid-cols-12 lg:gap-14" aria-labelledby={`svc-${s.id}`}>
                     <MaskReveal className={`relative aspect-[4/3] overflow-hidden rounded-[26px] lg:col-span-6 lg:aspect-auto lg:min-h-[26rem] ${flip ? 'lg:order-2' : ''}`} from={flip ? 'right' : 'left'}>
                       <div data-drift className="absolute -inset-[8%]">
                         <Still id={s.image} className="h-full w-full !rounded-none transition-transform duration-[1600ms] ease-[var(--ease-expo)] group-hover:scale-[1.05]" />
                       </div>
                       <span className="chip absolute left-4 top-4">{s.number}</span>
                     </MaskReveal>
-                    <div className={`flex flex-col justify-center p-6 sm:p-9 lg:col-span-6 lg:p-12 ${flip ? 'lg:order-1' : ''}`}>
+                    <div className={`flex flex-col justify-center lg:col-span-6 ${flip ? 'lg:order-1' : ''}`}>
                       <p className="eyebrow text-olive">{s.title}</p>
                       <h2 id={`svc-${s.id}`} className="display mt-3 text-[clamp(1.6rem,2.8vw,2.4rem)] !leading-[1.08]">{s.headline}</h2>
                       <p className="mt-4 text-[0.98rem] leading-relaxed text-ink-2">{s.summary}</p>
@@ -117,6 +118,7 @@ export default function ServicesPage() {
           </Reveal>
         </div>
       </section>
+      </div>
     </div>
   )
 }

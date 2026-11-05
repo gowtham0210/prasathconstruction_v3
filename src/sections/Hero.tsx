@@ -96,7 +96,7 @@ export default function Hero({ play }: Props) {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/90 via-white/45 to-transparent" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#080a10]/85 via-[#080a10]/40 to-transparent" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(15,18,24,0.82)_0%,rgba(15,18,24,0.35)_42%,transparent_70%)]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(15,18,24,0.45),transparent_55%)]" aria-hidden="true" />
         <span className="pointer-events-none absolute -left-24 bottom-20 h-80 w-80 rounded-full bg-[#4450e0]/30 blur-[90px]" style={{ animation: 'drift 18s ease-in-out infinite' }} aria-hidden="true" />
@@ -153,9 +153,9 @@ export default function Hero({ play }: Props) {
           </div>
         </div>
 
-        <div data-in="bar" className="absolute inset-x-0 bottom-0 z-10 overflow-hidden border-t border-white/20 bg-white/10 backdrop-blur-xl" aria-label="Services">
+        <div data-in="bar" className="absolute inset-x-0 bottom-0 z-10 overflow-hidden rounded-b-[30px] border-t border-white/20 bg-white/10 backdrop-blur-xl lg:rounded-b-[44px]" aria-label="Services">
           <div className="[mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_5%,#000_95%,transparent)]">
-            <div className="flex w-max items-center gap-12 whitespace-nowrap py-5 text-lg font-medium tracking-tight text-white/85 hover:[animation-play-state:paused]" style={{ animation: reduced ? undefined : 'marquee 34s linear infinite' }}>
+            <div className="flex w-max items-center gap-12 whitespace-nowrap py-5 pr-12 text-lg font-medium tracking-tight text-white/85 hover:[animation-play-state:paused]" style={{ animation: reduced ? undefined : 'marquee 34s linear infinite' }}>
               {[...strip, ...strip, ...strip, ...strip].map((t, i) => (
                 <span key={i} className="inline-flex items-center gap-12">
                   {t}

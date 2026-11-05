@@ -73,7 +73,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/90 via-white/45 to-transparent" aria-hidden="true" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/60 via-black/25 to-transparent" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(15,18,24,0.9)_0%,rgba(15,18,24,0.62)_55%,rgba(15,18,24,0.25)_85%)]" aria-hidden="true" />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(15,18,24,0.5),transparent_60%)]" aria-hidden="true" />
           <span className="pointer-events-none absolute -left-24 bottom-16 h-80 w-80 rounded-full bg-[#4450e0]/30 blur-[90px]" style={{ animation: 'drift 18s ease-in-out infinite' }} aria-hidden="true" />
@@ -96,12 +96,12 @@ export default function AboutPage() {
                 <defs><path id="about-seal" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" /></defs>
                 <text fontSize="9.4" fontWeight="600" letterSpacing="2.4" fill="#fff"><textPath href="#about-seal">OUR STORY • SINCE 2014 • OUR STORY • SINCE 2014 • </textPath></text>
               </svg>
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-white text-graphite transition-transform duration-500 group-hover:rotate-45"><ArrowDown size={18} strokeWidth={1.8} className="-rotate-[135deg]" /></span>
+              <span className="grid h-12 w-12 place-items-center rounded-full bg-[#f1ece2] text-[#131315] transition-transform duration-500 group-hover:rotate-45"><ArrowDown size={18} strokeWidth={1.8} className="-rotate-[135deg]" /></span>
             </button>
           </div>
 
           {/* words */}
-          <div className="relative z-10 flex min-h-[inherit] flex-col justify-start px-5 pb-16 pt-28 sm:px-9 lg:px-[clamp(28px,4.5vw,72px)] lg:pb-20 lg:pt-28">
+          <div className="relative z-10 flex min-h-[inherit] flex-col justify-start px-5 pb-16 pt-24 sm:px-9 lg:px-[clamp(28px,4.5vw,72px)] lg:pb-16 lg:pt-[4.5rem]">
             <div data-words className="max-w-[56rem]">
               <nav data-c aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-white/70">
                 <a href="/" className="link-line hover:text-white">Home</a>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 <span className="h-1.5 w-1.5 rounded-full bg-[#8fb3ea]" style={{ animation: 'pulseDot 2s ease-out infinite' }} />
                 About us
               </span>
-              <h1 id="about-page-title" className="hero-dark display mt-5 text-[clamp(2.3rem,5vw,5rem)] !leading-[0.98]" aria-label={aboutIntro.heroTitle}>
+              <h1 id="about-page-title" className="hero-dark display mt-5 text-[clamp(2.3rem,4.5vw,4.5rem)] !leading-[0.98]" aria-label={aboutIntro.heroTitle}>
                 <RevealWords as="span" lines={['Architects, engineers', '& craftspeople building', 'Tamilnadu’s most-loved homes.']} italic={['most-loved']} delay={0.4} stagger={0.07} />
               </h1>
               <p data-c className="mt-6 max-w-xl text-[1.05rem] leading-relaxed text-white/80">{aboutIntro.heroText}</p>
@@ -141,13 +141,14 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <div className="pn-frame">
       <section id="about-mvv" className="relative py-[clamp(40px,6vh,76px)] text-graphite" aria-labelledby="about-mvv-title">
         <div className="container-x">
-          <SectionHead id="about-mvv-title" chip={aboutIntro.chip} lines={aboutIntro.lines} accent={['home.']} text={aboutIntro.text} />
+          <SectionHead id="about-mvv-title" chip={aboutIntro.chip} lines={aboutIntro.lines} accent={['home.']} text={aboutIntro.text} className="mx-auto max-w-5xl text-center [&_h2]:text-[clamp(1.9rem,3.5vw,3.3rem)] [&>div:last-child]:!max-w-2xl" />
           <Stagger className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8" gap={0.14}>
             {mvv.map((m, i) => (
               <article key={m.title} onPointerMove={move} className="card card-hover group relative overflow-hidden !rounded-[32px] p-3 last:md:col-span-2 last:lg:col-span-1">
-                <span className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: 'radial-gradient(360px circle at var(--gx,50%) var(--gy,50%), rgba(143,179,234,0.28), transparent 60%)' }} aria-hidden="true" />
+                <span className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={{ background: 'radial-gradient(360px circle at var(--gx,50%) var(--gy,50%), rgba(var(--glow-rgb,143,179,234),0.28), transparent 60%)' }} aria-hidden="true" />
                 <div className="relative aspect-[4/3] overflow-hidden rounded-[24px]">
                   <Still id={m.image} className="h-full w-full !rounded-none transition-transform duration-[1500ms] ease-[var(--ease-expo)] group-hover:scale-[1.07]" />
                   <span className="chip absolute left-4 top-4">{String(i + 1).padStart(2, '0')}</span>
@@ -176,7 +177,7 @@ export default function AboutPage() {
           </div>
           <div className="lg:col-span-7">
             <Reveal>
-              <span className="chip">{trust.chip}</span>
+              <span className="chip sec-chip">{trust.chip}</span>
             </Reveal>
             <h2 id="about-trust-title" className="display mt-5 text-[clamp(2.2rem,4.4vw,4.2rem)] !leading-[1.02]">
               {trust.lines[0]} <span className="accent-word">{trust.lines[1]}</span>
@@ -208,7 +209,7 @@ export default function AboutPage() {
           <Reveal y={60}>
             <div className="card grid items-center gap-8 !rounded-[32px] p-7 sm:p-10 lg:grid-cols-2 lg:!rounded-[44px] lg:p-14">
               <div>
-                <span className="chip">{siteVisit.chip}</span>
+                <span className="chip sec-chip">{siteVisit.chip}</span>
                 <h2 id="about-visit-title" className="display mt-5 text-[clamp(1.9rem,3.6vw,3.2rem)] !leading-[1.05]">{siteVisit.title}</h2>
                 <p className="mt-4 max-w-md text-ink-2">{siteVisit.text}</p>
                 <div className="mt-7">
@@ -248,11 +249,11 @@ export default function AboutPage() {
         <div className="container-x">
           <Reveal y={70}>
             <div className="hero-sky relative overflow-hidden rounded-[32px] px-7 py-14 sm:px-12 sm:py-20 lg:rounded-[44px]">
-              <span className="pointer-events-none absolute -left-16 top-0 h-72 w-72 rounded-full bg-white/55 blur-3xl" style={{ animation: 'drift 16s ease-in-out infinite' }} aria-hidden="true" />
+              <span className="pointer-events-none absolute -left-16 top-0 h-72 w-72 rounded-full bg-[#d4b483]/15 blur-3xl" style={{ animation: 'drift 16s ease-in-out infinite' }} aria-hidden="true" />
               <span className="pointer-events-none absolute -right-10 bottom-0 h-72 w-72 rounded-full bg-[#ffd9bd]/70 blur-3xl" style={{ animation: 'drift 20s ease-in-out -8s infinite reverse' }} aria-hidden="true" />
               <div className="relative grid items-center gap-10 lg:grid-cols-2">
                 <div>
-                  <span className="chip">{consultation.chip}</span>
+                  <span className="chip sec-chip">{consultation.chip}</span>
                   <h2 id="about-cta-title" className="display mt-5 text-[clamp(2rem,4vw,3.6rem)] !leading-[1.04]">
                     Your dream home is <span className="accent-word">just one conversation away.</span>
                   </h2>
@@ -278,6 +279,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+      </div>
     </div>
   )
 }

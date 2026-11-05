@@ -9,7 +9,7 @@ import { useIsMobile } from '../hooks/useEnv'
 
 const ease = [0.16, 1, 0.3, 1] as const
 /** decorative photographs of finished homes, one for each card (they are not the owners' own homes) */
-const decor: StillId[] = ['g-40', 'g-41', 'g-01', 'g-45', 'g-42', 'p-completed-3']
+const decor: StillId[] = ['p-completed-3', 'p-completed-2', 'g-01', 'g-45', 'p-kaveri-aerial', 'p-thendral-solar']
 
 type Pos = 'left' | 'center' | 'right'
 

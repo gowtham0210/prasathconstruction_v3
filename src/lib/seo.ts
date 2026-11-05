@@ -54,11 +54,11 @@ export function setPageMeta(route: Route) {
   if (route?.kind === 'project') {
     const p = projects.find((x) => x.slug === route.slug)
     m = p
-      ? { path: `/projects/${p.slug}`, title: `${p.name} — ${p.location} | Prasanth Construction`, description: `${p.name} in ${p.location}: ${p.concept}. ${p.overview}`.slice(0, 300) }
+      ? { path: `/projects/${p.slug}`, title: `${p.name} — ${p.location} | Prasath Construction`, description: `${p.name} in ${p.location}: ${p.concept}. ${p.overview}`.slice(0, 300) }
       : meta.projects
   } else if (route?.kind === 'service') {
     const sv = services.find((x) => x.id === route.slug)
-    m = sv ? { path: `/services/${sv.id}`, title: `${sv.title} | Prasanth Construction`, description: `${sv.headline} ${sv.summary}`.slice(0, 300) } : meta.services
+    m = sv ? { path: `/services/${sv.id}`, title: `${sv.title} | Prasath Construction`, description: `${sv.headline} ${sv.summary}`.slice(0, 300) } : meta.services
   } else if (route) m = meta[route.kind]
   document.title = m.title
   setMeta('meta[name="description"]', 'name', 'description', m.description)

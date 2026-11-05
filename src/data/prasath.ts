@@ -6,7 +6,7 @@ const N = company.name
 export const hero = {
   eyebrow: "Tamilnadu's trusted builder",
   lines: ['Building Dreams.', 'Constructing Legacy.'],
-  text: 'Architect-led turnkey construction. Fixed cost. Real-time site tracking. Delivered on time across Tamilnadu for over a decade.',
+  text: 'Architect-led turnkey construction, interiors and rooftop solar. Fixed cost. Real-time site tracking. Delivered on time across Tamilnadu for over a decade.',
   primary: 'Book a Consultation',
   secondary: 'Know More',
 }
@@ -146,11 +146,11 @@ export const packagesCompare: { label: string; cells: (string | null)[] }[] = [
 ]
 
 export const videos = [
-  { id: 'rF1vYKGXMIQ', title: 'Choosing the Perfect Tiles for Your Dream Home' },
-  { id: 'yFS1YVkogmg', title: 'Choosing the Perfect Tiles for a Dream Home (Part 2)' },
   { id: 'r1qZwFGWjGE', title: 'This Is What Strong Foundations Look Like!' },
-  { id: 'XdlCaH6wp30', title: 'A Dream Taking Shape, One Detail at a Time' },
-  { id: 'nrKN_wj1_OE', title: 'They Had a Dream. We Built It.' },
-  { id: 'IvgeATiws7k', title: 'Building Dreams, One Step at a Time' },
-  { id: 'B-HT9k2fl00', title: 'Every Tile Tells a Story' },
+  { id: 'B-HT9k2fl00', title: 'A Dream Taking Shape, One Detail at a Time' },
+  { id: 'XdlCaH6wp30', title: 'They Had a Dream. We Built It.' },
+  { id: 'nrKN_wj1_OE', title: 'Building Dreams, One Step at a Time' },
+  { id: 'IvgeATiws7k', title: 'Every Tile Tells a Story' },
+  { id: 'rF1vYKGXMIQ', title: 'Choosing the Perfect Tiles for Your Dream Home' },
+  { id: 'yFS1YVkogmg', title: 'Choosing the Perfect Tiles for a Dream Home' },
 ]

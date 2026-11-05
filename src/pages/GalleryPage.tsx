@@ -1,12 +1,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, X } from 'lucide-react'
+import Lightbox from '../components/Lightbox'
 import Magnetic from '../components/Magnetic'
 import PageHero from '../components/PageHero'
 import { Reveal } from '../components/Reveal'
 import { galleryIds, GALLERY_CAPTIONS, GALLERY_RATIOS, STILLS } from '../data/media'
 import { consultation } from '../data/prasath'
-import { gsap, scrollToId, startScroll, stopScroll } from '../lib/smooth'
+import { gsap, scrollToId } from '../lib/smooth'
 import { useIsMobile, usePrefersReducedMotion } from '../hooks/useEnv'
 
 /** The Gallery page: every site photograph in a flowing grid with a full-screen viewer. */
@@ -94,23 +93,7 @@ export default function GalleryPage() {
     return () => ctx.revert()
   }, [reduced, mobile])
 
-  // full-screen viewer: lock page scrolling, arrow keys and Escape
-  useEffect(() => {
-    if (open === null) return
-    stopScroll()
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(null)
-      if (e.key === 'ArrowRight') setOpen((o) => (o === null ? o : (o + 1) % galleryIds.length))
-      if (e.key === 'ArrowLeft') setOpen((o) => (o === null ? o : (o - 1 + galleryIds.length) % galleryIds.length))
-    }
-    window.addEventListener('keydown', onKey)
-    return () => {
-      startScroll()
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [open])
-
-  const step = (d: number) => setOpen((o) => (o === null ? o : (o + d + galleryIds.length) % galleryIds.length))
+  const lightboxItems = useMemo(() => galleryIds.map((id) => ({ id, caption: GALLERY_CAPTIONS[id] })), [])
 
   return (
     <div ref={root}>
@@ -130,6 +113,7 @@ export default function GalleryPage() {
         actions={<><Magnetic as="button" onClick={() => scrollToId('contact')} className="btn-primary on-dark">Book a Consultation</Magnetic><Magnetic as="button" onClick={() => scrollToId('projects')} className="btn-ghost on-dark text-white">See the projects</Magnetic></>}
       />
 
+      <div className="pn-frame">
       <section id="gallery-grid" className="relative overflow-hidden py-[clamp(30px,4.5vh,56px)] text-graphite" aria-label="Photographs">
         <div className="container-x">
           <div className="grid items-start gap-4 lg:gap-5" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
@@ -156,7 +140,7 @@ export default function GalleryPage() {
           <Reveal y={70}>
             <div className="hero-sky relative overflow-hidden rounded-[32px] px-7 py-14 text-center sm:px-12 sm:py-20 lg:rounded-[44px]">
               <div className="relative">
-                <span className="chip">{consultation.chip}</span>
+                <span className="chip sec-chip">{consultation.chip}</span>
                 <h2 id="gallery-cta-title" className="display mx-auto mt-5 max-w-3xl text-[clamp(2rem,4.4vw,4rem)] !leading-[1.04]">
                   Your dream home is <span className="accent-word">just one conversation away.</span>
                 </h2>
@@ -168,24 +152,9 @@ export default function GalleryPage() {
           </Reveal>
         </div>
       </section>
+      </div>
 
-      <AnimatePresence>
-        {open !== null && (
-          <motion.div className="fixed inset-0 z-[80] grid place-items-center bg-graphite/92 p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Photograph viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setOpen(null)}>
-            <button className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white hover:text-graphite" aria-label="Close" onClick={() => setOpen(null)}>
-              <X size={18} strokeWidth={1.6} />
-            </button>
-            <button className="absolute left-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white hover:text-graphite" aria-label="Previous photograph" onClick={(e) => { e.stopPropagation(); step(-1) }}>
-              <ArrowLeft size={18} strokeWidth={1.6} />
-            </button>
-            <button className="absolute right-4 top-1/2 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white hover:text-graphite" aria-label="Next photograph" onClick={(e) => { e.stopPropagation(); step(1) }}>
-              <ArrowRight size={18} strokeWidth={1.6} />
-            </button>
-            <motion.img key={open} src={STILLS[galleryIds[open]].image} alt={STILLS[galleryIds[open]].alt} className="max-h-[86vh] max-w-[92vw] rounded-[20px] object-contain shadow-[0_40px_100px_-30px_rgba(0,0,0,0.8)]" initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }} onClick={(e) => e.stopPropagation()} />
-            <p className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-white/15 px-4 py-1.5 text-xs font-medium text-white backdrop-blur">{GALLERY_CAPTIONS[galleryIds[open]]} · {open + 1} / {galleryIds.length}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Lightbox items={lightboxItems} index={open} onIndex={setOpen} />
     </div>
   )
 }

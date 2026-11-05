@@ -6,11 +6,14 @@ export type Route =
   | { kind: 'services' }
   | { kind: 'projects' }
   | { kind: 'gallery' }
+  | { kind: 'interiors' }
+  | { kind: 'modernHomes' }
+  | { kind: 'onSite' }
   | { kind: 'packages' }
   | { kind: 'contact' }
   | null
 
-export const PAGE_PATHS = { about: '/about', services: '/services', projects: '/projects', gallery: '/gallery', packages: '/packages', contact: '/contact' } as const
+export const PAGE_PATHS = { about: '/about', services: '/services', projects: '/projects', gallery: '/gallery', interiors: '/interiors', modernHomes: '/modern-homes', onSite: '/on-site', packages: '/packages', contact: '/contact' } as const
 
 /** Reads a real URL path: `/packages`, `/projects/<slug>`, `/privacy`; anything else is the home page. */
 export function parsePath(path: string = location.pathname): Route {

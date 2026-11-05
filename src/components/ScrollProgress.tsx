@@ -18,5 +18,5 @@ export default function ScrollProgress() {
     }
   }, [reduced])
   if (reduced) return null
-  return <div ref={bar} className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gradient-to-r from-[#8fb3ea] via-olive to-[#f0c9ae]" style={{ transform: 'scaleX(0)' }} aria-hidden="true" />
+  return <div ref={bar} className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-gradient-to-r from-[#a98652] via-[#ff9a3c] to-[#f1e4cc] shadow-[0_0_12px_rgba(255,150,60,0.7)]" style={{ transform: 'scaleX(0)' }} aria-hidden="true" />
 }

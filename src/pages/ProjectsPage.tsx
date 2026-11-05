@@ -38,6 +38,7 @@ export default function ProjectsPage() {
         actions={<><Magnetic as="button" onClick={() => scrollToId('contact')} className="btn-primary on-dark">Book a Consultation</Magnetic><Magnetic as="button" onClick={() => scrollToId('packages')} className="btn-ghost on-dark text-white">View Packages</Magnetic></>}
       />
 
+      <div className="pn-frame">
       <section id="projects-grid" className="relative py-[clamp(30px,4.5vh,56px)] text-graphite" aria-label="All projects">
         <div className="container-x">
           <div role="tablist" aria-label="Filter projects" className="no-scrollbar flex gap-2 overflow-x-auto pb-2 md:justify-center">
@@ -109,6 +110,7 @@ export default function ProjectsPage() {
           </Reveal>
         </div>
       </section>
+      </div>
     </div>
   )
 }

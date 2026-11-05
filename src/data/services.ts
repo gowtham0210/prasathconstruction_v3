@@ -51,4 +51,11 @@ export const services: Service[] = [
     points: ['Structural assessment & repairs', 'Floor additions (vertical extensions)', 'Re-plastering & waterproofing', 'Full interior overhauls'],
     enquiryType: 'Renovation', image: 'g-07',
   },
+  {
+    id: 'solar', number: '06', title: 'Solar Solutions',
+    headline: 'Rooftop solar that powers your home and trims your bill.',
+    summary: 'Generate your own clean power. We survey your roof, size the system to how much electricity you use, and install the panels, inverter and wiring — so your home or building runs on sunshine and your electricity bills come down.',
+    points: ['Rooftop survey & system sizing', 'Panels, inverter & mounting installation', 'Grid connection & net-metering assistance', 'Maintenance & after-install support'],
+    enquiryType: 'Solar Solutions', image: 'p-solar',
+  },
 ]

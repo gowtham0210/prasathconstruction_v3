@@ -66,14 +66,15 @@ export const projects: Project[] = rows.map((r) => ({
   status: r.category,
   isConcept: false,
   cover: r.cover,
-  gallery: [r.cover],
-  overview: `${r.name} is a ${r.category.toLowerCase()} ${r.portions} project in ${r.location}, built on a ${Number(r.plot).toLocaleString('en-IN')} sq.ft plot with ${Number(r.build).toLocaleString('en-IN')} sq.ft of built-up area. Like every Prasath Construction project, it follows a fixed-cost, milestone-driven process with an architect-led design.`,
+  gallery: r.slug === 'thendral-villa' ? [r.cover, 'p-thendral-solar'] : r.slug === 'kaveri-residency' ? [r.cover, 'p-kaveri-aerial', 'p-kaveri-panels'] : [r.cover],
+  overview: `${r.name} is a ${r.category.toLowerCase()} ${r.portions} project in ${r.location}, built on a ${Number(r.plot).toLocaleString('en-IN')} sq.ft plot with ${Number(r.build).toLocaleString('en-IN')} sq.ft of built-up area.${r.slug === 'thendral-villa' || r.slug === 'kaveri-residency' ? ' The home also carries a rooftop solar installation, built by the same team.' : ''} Like every Prasath Construction project, it follows a fixed-cost, milestone-driven process with an architect-led design.`,
   specs: [
     { label: 'Status', value: r.category },
     { label: 'Location', value: r.location },
     { label: 'Plot area', value: `${Number(r.plot).toLocaleString('en-IN')} sq.ft` },
     { label: 'Built-up area', value: `${Number(r.build).toLocaleString('en-IN')} sq.ft` },
     { label: 'Portions', value: r.portions },
+    ...(r.slug === 'thendral-villa' || r.slug === 'kaveri-residency' ? [{ label: 'Solar', value: 'Rooftop solar installed' }] : []),
   ],
   process: PROCESS,
 }))

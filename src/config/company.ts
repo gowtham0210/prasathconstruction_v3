@@ -24,8 +24,8 @@ export interface CompanyConfig {
 }
 
 export const company: CompanyConfig = {
-  name: 'Prasanth Construction',
-  legalName: 'Prasanth Construction',
+  name: 'Prasath Construction',
+  legalName: 'Prasath Construction',
   tagline: 'Architect-led turnkey house construction across Tamilnadu',
   email: import.meta.env.VITE_COMPANY_EMAIL ?? 'prazed93@gmail.com',
   phone: import.meta.env.VITE_COMPANY_PHONE ?? '+91 96884 44573',

@@ -28,6 +28,7 @@ export default function PackagesPage() {
         actions={<><Magnetic as="button" onClick={() => scrollToId('contact')} className="btn-primary on-dark">Book a Consultation</Magnetic><Magnetic as="button" onClick={() => scrollToId('services')} className="btn-ghost on-dark text-white">Our services</Magnetic></>}
       />
 
+      <div className="pn-frame">
       <Packages id="packages-list" compare />
 
       <ProcessBuild id="packages-process" />
@@ -37,7 +38,7 @@ export default function PackagesPage() {
           <Reveal y={70}>
             <div className="hero-sky relative overflow-hidden rounded-[32px] px-7 py-14 text-center sm:px-12 sm:py-20 lg:rounded-[44px]">
               <div className="relative">
-                <span className="chip">{consultation.chip}</span>
+                <span className="chip sec-chip">{consultation.chip}</span>
                 <h2 id="packages-cta-title" className="display mx-auto mt-5 max-w-3xl text-[clamp(2rem,4.4vw,4rem)] !leading-[1.04]">
                   Not sure which fits? <span className="accent-word">Let’s talk it through.</span>
                 </h2>
@@ -50,6 +51,7 @@ export default function PackagesPage() {
           </Reveal>
         </div>
       </section>
+      </div>
     </div>
   )
 }

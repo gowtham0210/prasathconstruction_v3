@@ -22,7 +22,9 @@ export default function ContactPage() {
         sealTo="contact"
         actions={wa ? <a href={wa} target="_blank" rel="noreferrer" className="btn-primary on-dark">Chat on WhatsApp</a> : undefined}
       />
-      <Contact />
+      <div className="pn-frame">
+        <Contact />
+      </div>
     </div>
   )
 }

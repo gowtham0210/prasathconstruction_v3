@@ -15,5 +15,5 @@ export const journey: JourneyStage[] = [
   { number: '04', title: 'Foundation', text: 'Soil testing, excavation, footings and plinth.', image: 'g-39' },
   { number: '05', title: 'Structure', text: 'RCC framing, masonry, plumbing & electrical rough-in.', image: 'g-31' },
   { number: '06', title: 'Finishes', text: 'Tiling, painting, joinery, and interior fit-out.', image: 'g-21' },
-  { number: '07', title: 'Handover', text: 'Snag-list closure, warranties, and key handover.', image: 'g-40' },
+  { number: '07', title: 'Handover', text: 'Snag-list closure, warranties, and key handover.', image: 'p-completed-3' },
 ]

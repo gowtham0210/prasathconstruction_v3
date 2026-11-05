@@ -121,7 +121,7 @@ export default function WhyChoose({ id = 'home-why' }: { id?: string }) {
 
           {/* D — light */}
           <article data-tile onPointerMove={move} className={`${tile} card p-7 lg:col-span-4 lg:p-8`}>
-            <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={glow('rgba(143,179,234,0.35)')} />
+            <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={glow('rgba(var(--glow-rgb,143,179,234),0.35)')} />
             <div className="relative flex h-full flex-col justify-between gap-8">
               <div className="flex items-center justify-between"><span className="chip">04</span><UserRound size={24} strokeWidth={1.4} className="text-olive" /></div>
               <div>
@@ -150,7 +150,7 @@ export default function WhyChoose({ id = 'home-why' }: { id?: string }) {
 
           {/* F — wide strip */}
           <article data-tile onPointerMove={move} className={`${tile} card flex flex-col gap-5 p-7 md:col-span-2 lg:col-span-12 lg:flex-row lg:items-center lg:justify-between lg:p-9`}>
-            <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={glow('rgba(143,179,234,0.3)')} />
+            <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" style={glow('rgba(var(--glow-rgb,143,179,234),0.3)')} />
             <div className="relative flex items-center gap-5">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-graphite text-white transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"><ReceiptText size={24} strokeWidth={1.5} /></span>
               <div>

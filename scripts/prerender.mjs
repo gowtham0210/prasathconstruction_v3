@@ -52,14 +52,14 @@ for (const key of Object.keys(meta)) {
   urls.push([url, key === 'home' ? '1.0' : '0.8'])
 }
 for (const p of projects) {
-  const m = { path: `/projects/${p.slug}`, title: `${p.name} | Prasanth Construction`, description: `${p.name}, a project by Prasanth Construction. See photos, specifications and location.` }
+  const m = { path: `/projects/${p.slug}`, title: `${p.name} | Prasath Construction`, description: `${p.name}, a project by Prasath Construction. See photos, specifications and location.` }
   const [url, html] = page(m, '<p><a href="/projects">All projects</a></p>')
   write(m.path, html)
   urls.push([url, '0.6'])
 }
 
 for (const sv of services) {
-  const m = { path: `/services/${sv.id}`, title: `${sv.title} | Prasanth Construction`, description: sv.headline }
+  const m = { path: `/services/${sv.id}`, title: `${sv.title} | Prasath Construction`, description: sv.headline }
   const [url, html] = page(m, '<p><a href="/services">All services</a></p>')
   write(m.path, html)
   urls.push([url, '0.7'])

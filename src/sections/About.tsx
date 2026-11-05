@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, type PointerEvent } from 'react'
 import { Hammer, Home, Ruler, Sparkles } from 'lucide-react'
-import LoopVideo from '../components/LoopVideo'
+import Still from '../components/Still'
 import type { StillId } from '../data/media'
 import { MaskReveal, Reveal, RevealWords } from '../components/Reveal'
 import { aboutIntro, mvv, whyChoose } from '../data/prasath'
@@ -136,7 +136,7 @@ export default function About() {
                   >
                     <MaskReveal className="relative aspect-[4/5] w-full overflow-hidden" from="bottom" delay={i * 0.08}>
                       <div className="absolute inset-0 transition-transform duration-[1400ms] ease-[var(--ease-expo)] group-hover:scale-[1.07]">
-                        <LoopVideo src={p.video} poster={p.image} className="h-full w-full" focus={p.focus} speed={p.speed} />
+                        <Still id={p.image} className="h-full w-full" focus={p.focus} />
                       </div>
                       <span className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full border border-graphite/10 bg-white/90 py-1.5 pl-3 pr-4 text-[0.7rem] font-medium backdrop-blur transition-transform duration-500 group-hover:-translate-y-1">
                         <span className="h-1.5 w-1.5 rounded-full bg-olive" style={{ animation: 'pulseDot 2s ease-out infinite' }} />

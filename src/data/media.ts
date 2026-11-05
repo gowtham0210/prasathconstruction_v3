@@ -46,11 +46,15 @@ const BASE: Record<string, StillDef> = {
 const P = '/prasath'
 const real: Record<string, StillDef> = {
   'p-about': { image: `${P}/about.jpg`, alt: 'A villa from our portfolio' },
+  'p-solar': { image: '/images/solar-install.webp', alt: 'Rooftop solar panels installed on a home' },
   'p-interior': { image: `${P}/interior.jpg`, alt: 'An interior designed and fitted out by our studio' },
   'p-why': { image: `${P}/why.jpg`, alt: 'Why owners choose us' },
-  'p-completed-1': { image: `${P}/projects/completed_1.jpg`, alt: "Sanjay's House, Dharmapuri — completed" },
-  'p-completed-2': { image: `${P}/projects/completed_2.jpg`, alt: 'Kaveri Residency, Dharmapuri — completed' },
-  'p-completed-3': { image: `${P}/projects/completed_3.jpg`, alt: 'Thendral Villa, Palacode — completed' },
+  'p-completed-1': { image: '/images/sanjay-house.webp', alt: "Sanjay's House, Dharmapuri — completed" },
+  'p-completed-2': { image: '/images/kaveri-front.webp', alt: 'Kaveri Residency, Dharmapuri — completed, with rooftop solar' },
+  'p-kaveri-aerial': { image: '/images/kaveri-aerial.webp', alt: 'Kaveri Residency — rooftop solar array seen from above' },
+  'p-kaveri-panels': { image: '/images/kaveri-panels.webp', alt: 'Kaveri Residency — close view of the rooftop solar panels' },
+  'p-completed-3': { image: '/images/thendral-front.webp', alt: 'Thendral Villa, Palacode — completed, with rooftop solar' },
+  'p-thendral-solar': { image: '/images/thendral-solar.webp', alt: 'Thendral Villa — rooftop solar panels installed on the terrace' },
   'p-ongoing-1': { image: `${P}/projects/ongoing_1.jpg`, alt: 'Senthil Towers, Harur — ongoing' },
   'p-ongoing-2': { image: `${P}/projects/ongoing_2.jpg`, alt: 'Pachai Illam, Pennagaram — ongoing' },
   'p-ongoing-3': { image: `${P}/projects/ongoing_3.jpg`, alt: 'Surya Heights, Nallampalli — ongoing' },
@@ -80,10 +84,16 @@ for (let i = 1; i <= GALLERY_COUNT; i++) {
 
 export const STILLS: Record<string, StillDef> = { ...BASE, ...real }
 /** left out of the gallery: cafe / warehouse / commercial concepts (3-5, 11-16, 32), the same shot repeated (7, 9, 18, 38, 54) and a broken crop (19) */
-const HIDDEN = new Set([3, 4, 5, 7, 9, 11, 12, 13, 14, 15, 16, 18, 19, 32, 38, 54])
+const HIDDEN = new Set([40, 41, 42, 3, 4, 5, 7, 9, 11, 12, 13, 14, 15, 16, 18, 19, 32, 38, 54])
 const shown = Array.from({ length: GALLERY_COUNT }, (_, i) => i + 1).filter((n) => !HIDDEN.has(n))
-export const galleryIds = shown.map((n) => `g-${String(n).padStart(2, '0')}`)
+export const galleryIds = [...shown.map((n) => `g-${String(n).padStart(2, '0')}`), 'p-completed-3', 'p-thendral-solar', 'p-completed-2', 'p-kaveri-aerial', 'p-kaveri-panels', 'p-completed-1']
+GALLERY_CAPTIONS['p-completed-3'] = 'Finished home'
+GALLERY_CAPTIONS['p-thendral-solar'] = 'Rooftop solar installation'
+GALLERY_CAPTIONS['p-completed-2'] = 'Finished home'
+GALLERY_CAPTIONS['p-kaveri-aerial'] = 'Rooftop solar installation'
+GALLERY_CAPTIONS['p-kaveri-panels'] = 'Rooftop solar installation'
+GALLERY_CAPTIONS['p-completed-1'] = 'Finished home'
 
 /** width / height of each gallery photograph, so its space is reserved before it loads */
 const ALL_RATIOS = [0.75, 1.502, 1.502, 1.502, 1.778, 1.333, 0.75, 0.75, 0.75, 0.562, 1.502, 2.119, 1.527, 1.228, 2.085, 1.502, 1.502, 1.502, 0.666, 1.502, 1.333, 1.502, 1.502, 1.333, 1.404, 1.27, 1.502, 0.916, 1.25, 1.201, 1.333, 1.499, 0.75, 1.502, 1.502, 1.333, 1.257, 1.151, 1.333, 1.333, 1.333, 0.75, 1.502, 1.333, 1.502, 1.502, 1.502, 0.75, 1.502, 1.502, 1.502, 0.666, 1.538, 1.649]
-export const GALLERY_RATIOS = shown.map((n) => ALL_RATIOS[n - 1])
+export const GALLERY_RATIOS = [...shown.map((n) => ALL_RATIOS[n - 1]), 1.329, 1.333, 1.333, 1.335, 1.333, 0.74]

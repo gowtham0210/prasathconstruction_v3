@@ -14,7 +14,7 @@ export default function SectionHead({ id, chip, lines, accent = [], text, classN
   return (
     <div className={className}>
       <Reveal>
-        <span className="chip">{chip}</span>
+        <span className="chip sec-chip">{chip}</span>
       </Reveal>
       <h2 id={id} className="display mt-6 text-[clamp(2.4rem,5vw,4.8rem)] !leading-[1]" aria-label={lines.join(' ')}>
         <RevealWords as="span" lines={lines} italic={accent} stagger={0.09} />

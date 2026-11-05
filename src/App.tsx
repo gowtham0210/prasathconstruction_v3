@@ -8,22 +8,28 @@ import PrivacyPolicy from './components/PrivacyPolicy'
 import PageBackdrop from './components/PageBackdrop'
 import ScrollProgress from './components/ScrollProgress'
 import MobileActionBar from './components/MobileActionBar'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 import Hero from './sections/Hero'
-import About from './sections/About'
-import Services from './sections/Services'
 import Projects from './sections/Projects'
-import Testimonials from './sections/Testimonials'
+import HomeAbout from './sections/HomeAbout'
+import HomeServices from './sections/HomeServices'
+import HomeSolar from './sections/HomeSolar'
+import HomeWhy from './sections/HomeWhy'
+import HomePackages from './sections/HomePackages'
+import HomeReviews from './sections/HomeReviews'
+import HomeOwners from './sections/HomeOwners'
+import HomeCta from './sections/HomeCta'
 import AboutPage from './pages/AboutPage'
 import ServicesPage from './pages/ServicesPage'
 import ServiceDetailPage from './pages/ServiceDetailPage'
 import { services } from './data/services'
 import ProjectsPage from './pages/ProjectsPage'
 import GalleryPage from './pages/GalleryPage'
+import InteriorsPage from './pages/InteriorsPage'
+import ModernHomesPage from './pages/ModernHomesPage'
+import OnSitePage from './pages/OnSitePage'
 import PackagesPage from './pages/PackagesPage'
 import ContactPage from './pages/ContactPage'
-import Packages from './sections/Packages'
-import WhyChoose from './sections/WhyChoose'
-import ConsultCta from './sections/ConsultCta'
 import { usePrefersReducedMotion } from './hooks/useEnv'
 import { useRoute } from './hooks/useRoute'
 import { navigate } from './lib/router'
@@ -74,11 +80,47 @@ export default function App() {
     return () => clearTimeout(t)
   }, [splashDone])
 
+  // a soft champagne spotlight follows the pointer across the cards
+  useEffect(() => {
+    if (!window.matchMedia('(pointer: fine)').matches) return
+    let raf = 0
+    const move = (e: PointerEvent) => {
+      const card = (e.target as Element | null)?.closest?.('.card, .pn-card') as HTMLElement | null
+      if (!card) return
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect()
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`)
+        card.style.setProperty('--my', `${e.clientY - r.top}px`)
+      })
+    }
+    document.addEventListener('pointermove', move, { passive: true })
+    return () => { document.removeEventListener('pointermove', move); cancelAnimationFrame(raf) }
+  }, [])
+
   // every page has its own title, description and canonical address
   useEffect(() => setPageMeta(route), [route])
 
+  // every page wears the night theme, including a project or the privacy policy opening over a page
+  useEffect(() => {
+    const night = true
+    const el = document.documentElement
+    // over the home page's dark hero the navigation reads in white until the page is scrolled
+    if (night) {
+      el.dataset.theme = 'night'
+      el.dataset.hero = 'dark'
+    } else {
+      delete el.dataset.theme
+      delete el.dataset.hero
+    }
+    return () => {
+      delete el.dataset.theme
+      delete el.dataset.hero
+    }
+  }, [route])
+
   // the About page is a page of its own: start it at the top, and re-measure the scroll effects when pages swap
-  const pages = ['about', 'services', 'projects', 'gallery', 'packages', 'contact'] as const
+  const pages = ['about', 'services', 'projects', 'gallery', 'interiors', 'modernHomes', 'onSite', 'packages', 'contact'] as const
   // a project or the privacy policy opens over the page you came from (or the Projects page when opened directly)
   const underlay = useRef<(typeof pages)[number] | 'service' | 'home'>(route?.kind === 'project' ? 'projects' : 'home')
   const overlay = route?.kind === 'project' || route?.kind === 'privacy'
@@ -141,6 +183,12 @@ export default function App() {
           <ProjectsPage />
         ) : page === 'gallery' ? (
           <GalleryPage />
+        ) : page === 'interiors' ? (
+          <InteriorsPage />
+        ) : page === 'modernHomes' ? (
+          <ModernHomesPage />
+        ) : page === 'onSite' ? (
+          <OnSitePage />
         ) : page === 'packages' ? (
           <PackagesPage />
         ) : page === 'contact' ? (
@@ -148,13 +196,17 @@ export default function App() {
         ) : (
           <>
             <Hero play={revealed} />
-            <Projects onOpen={openProject} />
-            <Testimonials />
-            <About />
-            <Services />
-            <WhyChoose />
-            <Packages more />
-            <ConsultCta />
+            <div className="pn-frame">
+              <HomeAbout />
+              <HomeServices />
+              <Projects onOpen={openProject} />
+              <HomeSolar onOpen={openProject} />
+              <HomeWhy />
+              <HomePackages />
+              <HomeReviews />
+              <HomeOwners />
+              <HomeCta />
+            </div>
           </>
         )}
       </main>
@@ -167,6 +219,7 @@ export default function App() {
       <LinkBridge />
 
       {splashDone && <MobileActionBar hidden={page === 'contact'} />}
+      {splashDone && <FloatingWhatsApp />}
       {!splashDone && <Splash onReveal={onReveal} onDone={onDone} />}
     </>
   )

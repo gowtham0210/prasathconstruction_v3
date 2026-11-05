@@ -54,7 +54,7 @@
 }
 
 @layer components {
-  .eyebrow { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .eyebrow { font-size: 0.76rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; }
   .display { font-weight: 500; line-height: 1; letter-spacing: -0.04em; }
   .hairline { height: 1px; background: currentColor; opacity: 0.18; }
   .container-x { width: 100%; max-width: clamp(1360px, 72vw, 1760px); margin-inline: auto; padding-inline: clamp(20px, 4vw, 56px); }
@@ -164,7 +164,7 @@ html[data-hero='dark'] header[data-top='true'] { color: #fff; }
 html[data-hero='dark'] header[data-top='true'] ul button { color: rgba(255, 255, 255, 0.75); }
 html[data-hero='dark'] header[data-top='true'] ul button[aria-current='true'] { color: #fff; }
 html[data-hero='dark'] header[data-top='true'] ul span { background: #fff; }
-html[data-hero='dark'] header[data-top='true'] .btn-primary { background: #fff; color: var(--color-graphite); }
+html[data-hero='dark'] header[data-top='true'] .btn-primary { background: #fff; color: #0b0e17; }
 
 @keyframes windowOn { from { opacity: 0; } to { opacity: 0.9; } }
 
@@ -183,3 +183,237 @@ main { overflow-x: clip; }
 
 /* gradient-filled accent words only paint inside their own box: give the box room below the baseline so the tails of g, y and j are not cut off */
 [data-w].accent-word { padding-bottom: 0.2em; margin-bottom: -0.2em; }
+
+
+/* ================================================================================================
+   THE HOME PAGE, IN NIGHT: charcoal panels, warm gold, a serif for headings.
+   Everything below applies only while <html data-theme="night"> is set (the home page itself).
+   The colour tokens are swapped, so every component follows; a few hard-coded colours are overridden one by one.
+   ================================================================================================ */
+html[data-theme='night'] {
+  color-scheme: dark;
+  --color-ivory: #0b0b0d;
+  --color-graphite: #f4efe6;
+  --color-ink-2: #cbc5ba;
+  --color-ink-3: #9e998f;
+  --color-concrete: #a7a198;
+  --color-olive: #d4b483;
+  --color-bronze: #e6d0a8;
+  --color-sky: #1b1b20;
+  --color-peach: #2a2118;
+  --glow-rgb: 212,180,131;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  background: #0b0b0d;
+}
+html[data-theme='night'] ::selection { background: #d4b483; color: #0b0b0d; }
+
+/* headings in a serif, as in the references (the hero keeps its own lettering) */
+html[data-theme='night'] main h2:not(#hero-title),
+html[data-theme='night'] main .display:not(#hero-title) {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;
+}
+
+/* every section is its own rounded charcoal panel, like the hero and the Projects frame */
+html[data-theme='night'] footer {
+  position: relative; overflow: clip; margin: 0; border: 0; border-top: 1px solid rgba(212, 180, 131, 0.25); border-radius: 0;
+  background: #0a0c11; box-shadow: none; backdrop-filter: none;
+}
+html[data-theme='night'] footer { backdrop-filter: none; }
+
+/* components */
+html[data-theme='night'] .card { background: linear-gradient(180deg, rgba(34,34,38,0.85), rgba(24,24,27,0.85)); border-color: rgba(255,255,255,0.09); box-shadow: 0 30px 70px -45px rgba(0,0,0,0.9); }
+html[data-theme='night'] .card-hover:hover { border-color: rgba(212,180,131,0.5); box-shadow: 0 50px 90px -40px rgba(212,180,131,0.3); }
+html[data-theme='night'] .glass { background: rgba(24,24,27,0.62); border-color: rgba(255,255,255,0.12); }
+html[data-theme='night'] .chip { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); }
+html[data-theme='night'] .chip::after { background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%); }
+html[data-theme='night'] .btn-primary { color: #0b0b0d; }
+html[data-theme='night'] .btn-primary::after { color: #1a1206; }
+html[data-theme='night'] .btn-primary:hover { box-shadow: 0 16px 34px -14px rgba(212, 180, 131, 0.7); }
+html[data-theme='night'] .btn-ghost:hover { color: #0b0b0d; }
+html[data-theme='night'] .hero-sky { background: radial-gradient(120% 90% at 100% 0%, rgba(212,180,131,0.22) 0%, transparent 55%), linear-gradient(135deg, #1d1d21 0%, #17171a 55%, #241c12 100%); }
+html[data-theme='night'] .bg-sky-grad, html[data-theme='night'] .bg-peach-grad, html[data-theme='night'] .bg-sky-peach { background: linear-gradient(180deg, #111113, #19191c); }
+
+/* hard-coded light colours in the markup */
+html[data-theme='night'] .bg-white,
+html[data-theme='night'] [class*='bg-white/4'], html[data-theme='night'] [class*='bg-white/5'], html[data-theme='night'] [class*='bg-white/6'],
+html[data-theme='night'] [class*='bg-white/7'], html[data-theme='night'] [class*='bg-white/8'], html[data-theme='night'] [class*='bg-white/9'] { background-color: rgba(30, 30, 34, 0.86) !important; }
+html[data-theme='night'] .bg-graphite { background-color: #050506 !important; }
+html[data-theme='night'] [class*='hover:bg-graphite']:hover { background-color: #f4efe6 !important; color: #0b0b0d !important; }
+html[data-theme='night'] .group:hover [class*='group-hover:bg-graphite'] { background-color: #f4efe6 !important; color: #0b0b0d !important; }
+html[data-theme='night'] [class*='bg-[#dfe6f2]'], html[data-theme='night'] [class*='bg-[#e4e9fb]'] { background-color: #1d1d21 !important; }
+html[data-theme='night'] [class*='from-[#8fb3ea]'] { --tw-gradient-from: #e6d0a8 !important; }
+html[data-theme='night'] [class*='to-[#8fb3ea]'] { --tw-gradient-to: #e6d0a8 !important; }
+html[data-theme='night'] [class*='from-[#4450e0]'] { --tw-gradient-from: #a98652 !important; }
+html[data-theme='night'] [class*='to-[#4450e0]'] { --tw-gradient-to: #d4b483 !important; }
+html[data-theme='night'] [class*='ring-olive'] { --tw-ring-color: rgba(212, 180, 131, 0.5); }
+html[data-theme='night'] .bg-olive { color: #1a1206; }
+html[data-theme='night'] [id$='-title'] .accent-word { background-image: linear-gradient(90deg, #a98652, #e6d0a8, #f1e4cc, #a98652); }
+html[data-theme='night'] .accent-word { color: #d4b483; }
+html[data-theme='night'] [class*='text-[#c0452a]'] { color: #ff8a6b; }
+html[data-theme='night'] [class*='border-[#c0452a]'] { border-color: rgba(255,138,107,0.4); }
+html[data-theme='night'] [class*='text-[#8f2f18]'] { color: #ffb09c; }
+html[data-theme='night'] input, html[data-theme='night'] select, html[data-theme='night'] textarea { color: #f4efe6; }
+html[data-theme='night'] select option { background: #1a1a1e; color: #f4efe6; }
+
+/* inside the Projects frame (which is dark in every theme) the white pills stay white */
+
+/* ---- night polish: finer details that make the page feel finished ---- */
+html[data-theme='night'] { scrollbar-color: #3b3b42 #0b0b0d; }
+html[data-theme='night'] main h2, html[data-theme='night'] main .display { text-wrap: balance; }
+html[data-theme='night'] main p { text-wrap: pretty; }
+/* small gold rule before every section label */
+html[data-theme='night'] main .eyebrow.text-olive { display: inline-flex; align-items: center; gap: 14px; }
+html[data-theme='night'] main .eyebrow.text-olive::before { content: ''; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, currentColor); }
+/* a thread of gold light along the top edge of every panel, and a fine grain over its surface */
+html[data-theme='night'] .btn-ghost { border-color: rgba(244, 239, 230, 0.35); }
+html[data-theme='night'] .btn-ghost:hover { border-color: #f4efe6; }
+html[data-theme='night'] .btn-primary { box-shadow: 0 10px 30px -14px rgba(212, 180, 131, 0.55); }
+html[data-theme='night'] main a:not([class]):hover, html[data-theme='night'] footer a:hover { color: #e6d0a8; }
+
+
+/* the About page, in the same night: the blue and peach leftovers of the light theme become champagne */
+html[data-theme='night'] [class*='bg-[#8fb3ea]'] { background-color: #d4b483; }
+html[data-theme='night'] [class*='bg-[#4450e0]/'] { background-color: rgba(212, 180, 131, 0.2); }
+html[data-theme='night'] [class*='bg-[#f0c9ae]/'], html[data-theme='night'] [class*='bg-[#ffd9bd]/'] { background-color: rgba(212, 180, 131, 0.14); }
+html[data-theme='night'] article[class*='from-[#4450e0]'], html[data-theme='night'] article[class*='from-[#4450e0]'] * { color: #1a1206; }
+/* ---- the home page in bands: dark and cream, one after the other, with a wave between them ---- */
+[data-tone='dark'] {
+  --bg: #1b1b1d; --fg: #ece8df; --muted: #b0ada6; --subtle: #85827c; --card: #1e1e21; --card-2: #242427;
+  --line: rgba(255, 255, 255, 0.1); --line-strong: rgba(255, 255, 255, 0.28); --gold: #d4b483; --on-gold: #1a1206;
+}
+[data-tone='light'] {
+  --bg: #1b1b1d; --fg: #ece8df; --muted: #b0ada6; --subtle: #85827c; --card: #232326; --card-2: #29292c;
+  --line: rgba(255, 255, 255, 0.1); --line-strong: rgba(255, 255, 255, 0.28); --gold: #d4b483; --on-gold: #1a1206;
+}
+[data-tone] { background: var(--bg); color: var(--fg); }
+.t-muted { color: var(--muted); } .t-subtle { color: var(--subtle); } .t-gold { color: var(--gold); }
+.t-card { background: var(--card); border: 1px solid var(--line); }
+.t-card-2 { background: var(--card-2); border: 1px solid var(--line); }
+.t-line { border-color: var(--line); }
+.t-goldbg { background: var(--gold); color: var(--on-gold); }
+/* the serif's figures stand on the line (not old-style), so prices and years read cleanly */
+html[data-theme='night'] .display, html[data-theme='night'] main h2 { font-variant-numeric: lining-nums; }
+/* inside the cream bands, white stays white (the night rules above only apply to dark surfaces) */
+
+/* the flame: big numbers are filled with the phoenix's colours */
+.t-flame { background: linear-gradient(160deg, #f1e4cc 0%, #d4b483 50%, #a98652 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* over the hero the navigation reads in white, with a soft dark fade behind it so it stays clear on bright flames and sky */
+html[data-hero='dark'] header[data-top='true'] ul a { color: rgba(255, 255, 255, 0.9); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55); }
+html[data-hero='dark'] header[data-top='true'] ul a[aria-current] { color: #fff; }
+html[data-hero='dark'] header[data-top='true'] ul a:hover { color: #fff; }
+html[data-hero='dark'] header[data-top='true'] ul span { background: #fff; }
+html[data-hero='dark'] header[data-top='true']::before { content: ''; position: absolute; inset: 0 0 -28px 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(8, 10, 16, 0.6) 0%, rgba(8, 10, 16, 0.28) 55%, transparent 100%); }
+
+/* headings that stay on one line on laptops and up */
+@media (min-width: 1024px) { html[data-theme] main h2.nowrap-lg { text-wrap: nowrap; white-space: nowrap; } }
+
+/* ---- panel layout of the home page ---- */
+.pn-eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: #9b9890; font-weight: 500; }
+.pn-title { font-family: var(--font-display); font-weight: 400; line-height: 1.12; letter-spacing: -0.01em; font-size: clamp(1.7rem, 2.5vw, 2.5rem); color: #f1ede4; }
+.pn-pill { display: inline-flex; align-items: center; gap: 0.6rem; border: 1px solid rgba(255,255,255,0.22); border-radius: 999px; padding: 0.55rem 1.15rem; font-size: 0.78rem; color: #ece8df; transition: all 0.4s; }
+.pn-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(212,180,131,0.7); }
+.pn-card { background: #242427; border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; }
+
+html[data-theme='night'] .btn-ghost { color: #ece8df; }
+html[data-theme='night'] .btn-ghost:hover { color: #131315; }
+
+/* ---- the About page's sections are panels in the same frame as the home page's ---- */
+html[data-theme='night'] .sec-chip { background: none; border: 0; padding: 0; border-radius: 0; font-size: 0.66rem; letter-spacing: 0.3em; text-transform: uppercase; color: #9b9890; font-weight: 500; box-shadow: none; }
+html[data-theme='night'] .sec-chip::after { display: none; }
+
+/* ---- the phoenix on every panel: an ember thread along the top, warm light in one corner, and the mark itself, faint ---- */
+.pn-pill:hover { border-color: rgba(255, 150, 60, 0.85); box-shadow: 0 10px 28px -12px rgba(255, 140, 50, 0.6); }
+.pn-card { transition: border-color 0.4s, box-shadow 0.4s; }
+.pn-card:hover { border-color: rgba(255, 150, 60, 0.5); box-shadow: 0 24px 50px -28px rgba(255, 140, 50, 0.5); }
+html[data-theme='night'] .accent-word, html[data-theme='night'] [id$='-title'] .accent-word { background-image: linear-gradient(90deg, #ff9a3c, #f1e4cc, #d4b483, #ff9a3c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+html[data-theme='night'] footer { border-top-color: rgba(255, 150, 60, 0.4); }
+
+/* the Contact page's hero and form in the same night */
+html[data-theme='night'] [class*='from-white/90'] { --tw-gradient-from: rgba(0, 0, 0, 0.6); --tw-gradient-via: rgba(0, 0, 0, 0.25); }
+html[data-theme='night'] [class*='hover:bg-white']:hover { background-color: rgba(52, 52, 58, 0.95) !important; }
+
+/* the home hero's gold word shimmers in flame and champagne, like the About hero's */
+html[data-theme='night'] #hero-title.hero-dark .accent-word { background-image: linear-gradient(90deg, #ff9a3c, #f1e4cc, #d4b483, #ff9a3c); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmerText 5s linear infinite; }
+
+/* ---- panels of the About, Contact and Services pages: the same frame, heading size and ember details as the home page ---- */
+html[data-theme='night'] #about-mvv .container-x, html[data-theme='night'] #about-journey .container-x, html[data-theme='night'] #about-why .container-x, html[data-theme='night'] #about-trust .container-x, html[data-theme='night'] #about-visit .container-x, html[data-theme='night'] #about-gallery .container-x, html[data-theme='night'] #about-cta .container-x, html[data-theme='night'] #contact .container-x, html[data-theme='night'] #svc-list .container-x, html[data-theme='night'] #svc-cta .container-x, html[data-theme='night'] #svc-detail .container-x, html[data-theme='night'] #svc-process .container-x, html[data-theme='night'] #svc-others .container-x, html[data-theme='night'] #svc-detail-cta .container-x { max-width: none; padding-inline: clamp(20px, 3vw, 48px); }
+html[data-theme='night'] #about-mvv h2, html[data-theme='night'] #about-journey h2, html[data-theme='night'] #about-why h2, html[data-theme='night'] #about-trust h2, html[data-theme='night'] #about-visit h2, html[data-theme='night'] #about-gallery h2, html[data-theme='night'] #about-cta h2, html[data-theme='night'] #contact h2, html[data-theme='night'] #svc-list h2, html[data-theme='night'] #svc-cta h2, html[data-theme='night'] #svc-detail h2, html[data-theme='night'] #svc-process h2, html[data-theme='night'] #svc-others h2, html[data-theme='night'] #svc-detail-cta h2 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); line-height: 1.12; }
+
+/* the home page's panels (Band) get the same ember thread, warm light and faint phoenix */
+
+/* the chosen option in the form is champagne, not black */
+html[data-theme='night'] #contact label[class*='bg-graphite'] { background-color: #d4b483 !important; color: #1a1206 !important; border-color: #d4b483 !important; }
+
+
+/* ---- one single frame: below the hero, every section of a page lives in ONE rounded dark panel, divided by thin lines ---- */
+.pn-frame { position: relative; isolation: isolate; overflow: clip; width: calc(100% - 2 * clamp(8px, 1.2vw, 20px)); max-width: 1740px; margin: 12px auto; border-radius: clamp(18px, 2vw, 28px); border: 1px solid rgba(255, 255, 255, 0.07); background-color: #1b1b1d; background-image: radial-gradient(45% 30% at 100% 0%, rgba(255, 140, 50, 0.09), transparent 62%), radial-gradient(40% 25% at 0% 100%, rgba(212, 180, 131, 0.06), transparent 70%); }
+.pn-frame::before { content: ''; position: absolute; z-index: -1; pointer-events: none; right: -3rem; bottom: -4rem; width: 30rem; height: 30rem; background: url('/logo.png') no-repeat center / contain; opacity: 0.04; }
+.pn-frame::after { content: ''; position: absolute; z-index: -1; pointer-events: none; left: 10%; right: 10%; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 150, 60, 0.8), rgba(240, 200, 140, 0.95), rgba(255, 150, 60, 0.8), transparent); filter: drop-shadow(0 0 6px rgba(255, 140, 50, 0.65)); }
+.pn-frame > section { border: 0; border-radius: 0; background: transparent; padding-block: clamp(30px, 5vh, 56px); }
+.pn-frame > section { position: relative; }
+.pn-frame > section + section::before { content: ''; position: absolute; top: 0; left: clamp(20px, 3vw, 48px); right: clamp(20px, 3vw, 48px); height: 1px; background: rgba(255, 255, 255, 0.1); pointer-events: none; }
+html[data-theme='night'] #contact [class*='lg:grid-cols-12'][class*='backdrop-blur-xl'] { background: transparent; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+
+html[data-theme='night'] #projects-grid .container-x, html[data-theme='night'] #projects-process .container-x, html[data-theme='night'] #projects-trust .container-x { max-width: none; padding-inline: clamp(20px, 3vw, 48px); }
+html[data-theme='night'] #projects-grid h2, html[data-theme='night'] #projects-process h2, html[data-theme='night'] #projects-trust h2 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); line-height: 1.12; }
+html[data-theme='night'] #projects-stats .container-x { max-width: none; padding-inline: clamp(20px, 3vw, 48px); }
+html[data-theme='night'] #projects-stats h2 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); line-height: 1.12; }
+html[data-theme='night'] #gallery-grid .container-x, html[data-theme='night'] #gallery-cta .container-x { max-width: none; padding-inline: clamp(20px, 3vw, 48px); }
+html[data-theme='night'] #gallery-grid h2, html[data-theme='night'] #gallery-cta h2 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); line-height: 1.12; }
+html[data-theme='night'] #packages-list .container-x, html[data-theme='night'] #packages-process .container-x, html[data-theme='night'] #packages-cta .container-x { max-width: none; padding-inline: clamp(20px, 3vw, 48px); }
+html[data-theme='night'] #packages-list h2, html[data-theme='night'] #packages-process h2, html[data-theme='night'] #packages-cta h2 { font-size: clamp(1.7rem, 2.5vw, 2.5rem); line-height: 1.12; }
+
+
+/* ================= premium finish ================= */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+body { font-feature-settings: 'kern' 1, 'liga' 1; }
+/* a fine film grain over everything, like a printed page */
+body::after { content: ''; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.06; mix-blend-mode: soft-light; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+@media (prefers-reduced-motion: reduce) { body::after { display: none; } }
+/* keyboard focus is clearly visible, in champagne */
+:focus-visible { outline: 2px solid #d4b483; outline-offset: 3px; border-radius: 6px; }
+/* a slim champagne scrollbar */
+html[data-theme='night'] { scrollbar-width: thin; scrollbar-color: #5b5240 #0b0b0d; }
+html[data-theme='night'] ::-webkit-scrollbar { width: 10px; }
+html[data-theme='night'] ::-webkit-scrollbar-track { background: #0b0b0d; }
+html[data-theme='night'] ::-webkit-scrollbar-thumb { background: linear-gradient(#6b5f48, #4a4233); border-radius: 10px; border: 2px solid #0b0b0d; }
+/* the footer is the same charcoal as the page's frame, with its ember line */
+html[data-theme='night'] footer { background: #131315 !important; }
+/* leftover blue glows of the old light theme */
+html[data-theme='night'] [class*='bg-[#7f8bff]/'] { background-color: rgba(212, 180, 131, 0.14); }
+
+/* ---- premium details: buttons, cards and the header ---- */
+html[data-theme='night'] .btn-primary:not(.on-dark) { background: linear-gradient(135deg, #f7eedb 0%, #dcc08f 55%, #c9a36a 100%); color: #1a1206; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 14px 32px -16px rgba(212, 180, 131, 0.7); }
+html[data-theme='night'] .btn-primary:not(.on-dark):hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 20px 40px -14px rgba(255, 150, 60, 0.55); }
+html[data-hero='dark'] header[data-top='true'] .btn-primary { background: #fff; color: #0b0e17; box-shadow: none; }
+html[data-theme='night'] .card, html[data-theme='night'] .pn-card { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 30px 70px -45px rgba(0, 0, 0, 0.9); }
+html[data-theme='night'] header[data-top='false'] { background-color: rgba(14, 14, 16, 0.72) !important; backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%); border-bottom-color: rgba(255, 255, 255, 0.07) !important; box-shadow: 0 1px 0 rgba(212, 180, 131, 0.18), 0 18px 40px -26px rgba(0, 0, 0, 0.8); }
+
+
+/* ---- more premium: ornaments, spotlight, wordmark ---- */
+/* a short ember rule before every small section label */
+.pn-eyebrow::before, html[data-theme='night'] .sec-chip::before { content: ''; display: inline-block; width: 30px; height: 1px; margin-right: 14px; vertical-align: middle; background: linear-gradient(90deg, transparent, #d4b483); }
+html[data-theme='night'] .card:hover { background-image: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(212, 180, 131, 0.12), transparent 70%), linear-gradient(180deg, rgba(34, 34, 38, 0.85), rgba(24, 24, 27, 0.85)); }
+html[data-theme='night'] .pn-card:hover { background-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(212, 180, 131, 0.12), transparent 70%); }
+input, textarea, select { caret-color: #d4b483; }
+/* the footer carries the name, very large and very faint, behind its content */
+html[data-theme='night'] footer { position: relative; overflow: clip; }
+html[data-theme='night'] footer::after { content: 'PRASATH'; position: absolute; left: 50%; bottom: -0.18em; transform: translateX(-50%); z-index: 0; pointer-events: none; font-family: var(--font-display); font-size: clamp(5rem, 17vw, 17rem); line-height: 1; letter-spacing: 0.06em; color: transparent; -webkit-text-stroke: 1px rgba(212, 180, 131, 0.14); white-space: nowrap; }
+html[data-theme='night'] footer > * { position: relative; z-index: 1; }
+
+
+/* ---- a project's own page, in the same night as the rest ---- */
+html[data-theme='night'] [role='dialog'] h1, html[data-theme='night'] [role='dialog'] h2, html[data-theme='night'] [role='dialog'] .display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+html[data-theme='night'] [role='dialog'] h1.display { font-size: clamp(2.4rem, 6vw, 5.6rem); line-height: 1.02; }
+html[data-theme='night'] [role='dialog'] #pd-enquire h2 { font-size: clamp(1.9rem, 3.6vw, 3.4rem); line-height: 1.08; }
+/* small labels: grey, spaced, with the ember rule before */
+html[data-theme='night'] [role='dialog'] .eyebrow { font-size: 0.7rem; letter-spacing: 0.3em; font-weight: 500; color: #9b9890; }
+html[data-theme='night'] [role='dialog'] .eyebrow::before { content: ''; display: inline-block; width: 30px; height: 1px; margin-right: 14px; vertical-align: middle; background: linear-gradient(90deg, transparent, #d4b483); }
+/* the photograph is shaded dark at the foot, not washed with light */
+html[data-theme='night'] [role='dialog'] [class*='from-graphite/90'] { --tw-gradient-from: rgba(11, 11, 13, 0.92); --tw-gradient-via: rgba(11, 11, 13, 0.3); --tw-gradient-to: rgba(11, 11, 13, 0.08); }
+/* thin inset lines between the sections */
+html[data-theme='night'] [role='dialog'] #pd-photo, html[data-theme='night'] [role='dialog'] #pd-more, html[data-theme='night'] [role='dialog'] #pd-sites, html[data-theme='night'] [role='dialog'] #pd-process { position: relative; }
+html[data-theme='night'] [role='dialog'] #pd-photo::before, html[data-theme='night'] [role='dialog'] #pd-more::before, html[data-theme='night'] [role='dialog'] #pd-sites::before, html[data-theme='night'] [role='dialog'] #pd-process::before { content: ''; position: absolute; top: 0; left: clamp(20px, 3vw, 48px); right: clamp(20px, 3vw, 48px); height: 1px; background: linear-gradient(90deg, transparent, rgba(212, 180, 131, 0.5), transparent); pointer-events: none; }
+
+html[data-theme='night'] [role='dialog'] h1 .accent-word { background-image: linear-gradient(90deg, #ff9a3c, #f1e4cc, #d4b483, #ff9a3c); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmerText 5s linear infinite; }

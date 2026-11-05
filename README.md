@@ -1,4 +1,4 @@
-# Prasanth Construction — residential construction website
+# Prasath Construction — residential construction website
 
 A cinematic, scroll-driven website for a residential construction company (independent houses, villas, duplexes,
 turnkey construction, renovation).

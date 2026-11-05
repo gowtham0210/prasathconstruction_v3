@@ -17,7 +17,7 @@ export interface EnquiryPayload {
 
 export type EnquiryErrors = Partial<Record<keyof EnquiryPayload, string>>
 
-export const projectTypes = ['House Construction', 'Interior Design', 'Turnkey Solutions', 'Architecture', 'Renovation', 'Not sure yet']
+export const projectTypes = ['House Construction', 'Interior Design', 'Turnkey Solutions', 'Architecture', 'Renovation', 'Solar Solutions', 'Not sure yet']
 export const contactPrefs = ['Call me', 'WhatsApp me']
 export const plotOptions = ['I own a plot', 'I am looking for a plot', 'I am renovating an existing home', 'Not decided yet']
 export const budgetOptions = ['Not decided yet', 'Under ₹50 lakh', '₹50 lakh – ₹1 crore', '₹1 crore – ₹2 crore', 'Above ₹2 crore']
@@ -41,7 +41,33 @@ export class EnquiryError extends Error {
   }
 }
 
-const endpoint = () => import.meta.env.VITE_FORM_ENDPOINT || '/api/enquiry'
+/**
+ * Enquiries are emailed through Web3Forms (free). The access key is public by design: it can only send to the address it was created for.
+ * Set VITE_FORM_ENDPOINT to use a different service instead, and VITE_WEB3FORMS_KEY to use a different key.
+ */
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit'
+const web3formsKey = () => import.meta.env.VITE_WEB3FORMS_KEY || '1f15a9d2-c792-42d7-bdeb-5b8a73e8f36c'
+const endpoint = () => import.meta.env.VITE_FORM_ENDPOINT || WEB3FORMS_URL
+
+/** The enquiry as an email: a clear subject, and the details the owner gave, in a sensible order. */
+function web3formsBody(p: EnquiryPayload) {
+  const body: Record<string, string> = {
+    access_key: web3formsKey(),
+    subject: `New enquiry — ${p.fullName.trim()} — ${p.projectType}`,
+    from_name: 'Prasath Construction website',
+    Name: p.fullName.trim(),
+    Phone: p.phone.trim(),
+    'Wants to build': p.projectType,
+    'Prefers to be reached by': p.contactPref,
+  }
+  if (p.plotAvailability) body['Plot'] = p.plotAvailability
+  if (p.budget && p.budget !== 'Not decided yet') body['Budget'] = p.budget
+  if (p.location.trim()) body['Location'] = p.location.trim()
+  if (p.email.trim()) body.email = p.email.trim() // lets you reply straight to the visitor
+  if (p.message.trim()) body['Message'] = p.message.trim()
+  body['Sent from'] = location.href
+  return body
+}
 
 /**
  * Sends the enquiry to the configured backend. Resolves only when the server confirms success —
@@ -55,7 +81,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
     res = await fetch(endpoint(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ ...payload, submittedAt: new Date().toISOString(), page: location.href }),
+      body: JSON.stringify(endpoint() === WEB3FORMS_URL ? web3formsBody(payload) : { ...payload, submittedAt: new Date().toISOString(), page: location.href }),
       signal: ctrl.signal,
     })
   } catch {
@@ -80,6 +106,7 @@ export async function submitEnquiry(payload: EnquiryPayload): Promise<void> {
   try {
     const data = await res.json()
     if (data && data.ok === false) throw new EnquiryError('server', String(data.message || 'The enquiry could not be saved.'))
+    if (data && data.success === false) throw new EnquiryError('server', 'The enquiry could not be sent. Please try again or contact us directly.')
   } catch (err) {
     if (err instanceof EnquiryError) throw err
     /* a non-JSON 2xx from a hosted form service is treated as success */

@@ -31,11 +31,12 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
         image={s.image}
         focus="50% 50%"
         pills={s.points.slice(0, 3)}
-        seal={`${s.title} • Prasanth Construction •`}
+        seal={`${s.title} • Prasath Construction •`}
         sealTo="svc-detail"
         actions={<><Magnetic as="button" onClick={enquire} className="btn-primary on-dark">Enquire about {s.title}</Magnetic><Magnetic as="a" href="/services" className="btn-ghost on-dark text-white">All services</Magnetic></>}
       />
 
+      <div className="pn-frame">
       <section id="svc-detail" className="relative py-[clamp(40px,6vh,76px)] text-graphite" aria-labelledby="svc-detail-title">
         <div className="container-x">
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
@@ -73,16 +74,16 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
       <section id="svc-others" className="relative py-[clamp(40px,6vh,76px)] text-graphite" aria-labelledby="svc-others-title">
         <div className="container-x">
           <SectionHead id="svc-others-title" chip="More from us" lines={['Our other', 'services.']} accent={['services.']} />
-          <Stagger as="ul" className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" gap={0.09}>
+          <Stagger as="ul" className="mt-12 grid gap-5 sm:grid-cols-5 sm:gap-3 lg:gap-4" gap={0.09}>
             {others.map((o) => (
               <li key={o.id}>
                 <a href={`/services/${o.id}`} className="card card-hover group flex h-full flex-col p-3">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[22px]">
                     <Still id={o.image} className="h-full w-full !rounded-none transition-transform duration-[1400ms] ease-[var(--ease-expo)] group-hover:scale-[1.07]" />
                   </div>
-                  <div className="flex flex-1 items-center justify-between gap-3 p-4">
-                    <span className="text-[1.1rem] font-medium tracking-tight">{o.title}</span>
-                    <ArrowUpRight size={18} strokeWidth={1.6} className="shrink-0 transition-transform duration-500 group-hover:rotate-45" aria-hidden="true" />
+                  <div className="flex flex-1 items-center justify-between gap-3 p-2 sm:p-2 lg:p-3 lg:px-2">
+                    <span className="text-[0.8rem] lg:text-[1.02rem] leading-snug font-medium tracking-tight">{o.title}</span>
+                    <ArrowUpRight size={18} strokeWidth={1.6} className="hidden shrink-0 lg:block transition-transform duration-500 group-hover:rotate-45" aria-hidden="true" />
                   </div>
                 </a>
               </li>
@@ -110,6 +111,7 @@ export default function ServiceDetailPage({ slug }: { slug: string }) {
           </Reveal>
         </div>
       </section>
+      </div>
     </div>
   )
 }
